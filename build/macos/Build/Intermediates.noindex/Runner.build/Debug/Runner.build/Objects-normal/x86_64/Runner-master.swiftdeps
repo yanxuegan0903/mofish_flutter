@@ -1,0 +1,8 @@
+version: "Apple Swift version 5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)"
+options: "79aef02e90101e4374d32f07dca42413333317180c201b33b648567cfb3a4aac"
+build_start_time: [1646892087, 376446008]
+build_end_time: [1646892087, 919903039]
+inputs:
+  "/Users/a160/Desktop/testProjects/mofish_flutter/macos/Flutter/GeneratedPluginRegistrant.swift": [1646892073, 397436141]
+  "/Users/a160/Desktop/testProjects/mofish_flutter/macos/Runner/AppDelegate.swift": [1645085400, 951247692]
+  "/Users/a160/Desktop/testProjects/mofish_flutter/macos/Runner/MainFlutterWindow.swift": [1645085400, 952623844]
