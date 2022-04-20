@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_cast
 
 import 'package:flutter/material.dart';
 import 'package:mofish_flutter/page/fishpond/fishpondListModel.dart';
@@ -8,6 +8,7 @@ import 'dart:convert' as convert;
 
 import 'package:mofish_flutter/page/search/search.dart';
 import 'package:mofish_flutter/page/webview/webViewPage.dart';
+import 'package:mofish_flutter/request/baseRequest.dart';
 
 typedef OnClickCategory = Function(int index);
 typedef OnClickCategoryItem = Function(int index, String id);
@@ -112,13 +113,11 @@ class _fishpondPageState extends State<fishpondPage>
   }
 
   //  请求鱼塘的所有item
-  _fetchAllCategorys() async {
-    String url = 'https://api.tophub.fun/GetAllType';
-    var response = await http.get(Uri.parse(url));
-
+  _fetchAllCategorys() async{
+    var request = BaseRequest("https://api.tophub.fun","GetAllType");
+    var result = await request.get();
     setState(() {
-      model = FishpondModel.fromJson(
-          convert.jsonDecode(convert.utf8.decode(response.bodyBytes)));
+      model = FishpondModel.fromJson(result);
     });
     _fetchCategoryItems();
   }

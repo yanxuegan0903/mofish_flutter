@@ -6,6 +6,7 @@ import 'package:mofish_flutter/page/lastest/lastestModel.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:mofish_flutter/page/webview/webViewPage.dart';
+import 'package:mofish_flutter/request/baseRequest.dart';
 
 class SearchPage extends StatefulWidget {
   SearchPage({Key? key}) : super(key: key);
@@ -19,13 +20,16 @@ class _SearchPageState extends State<SearchPage>
   List<LastestListItem>? _list;
 
   _searchWithKeyword(String keyword) async {
-    String url = 'https://api.tophub.fun/SearchKey?key=${keyword}';
-    var response = await http.get(Uri.parse(url));
-    LastestListModel listModel = LastestListModel.fromJson(
-        convert.jsonDecode(convert.utf8.decode(response.bodyBytes)));
+
+    var request = BaseRequest("https://api.tophub.fun","SearchKey");
+    request.params = {"key":keyword};
+    var result = await request.get();
+    LastestListModel listModel = LastestListModel.fromJson(result);
     _list = <LastestListItem>[];
     _list?.addAll(listModel.data ?? []);
-    setState(() {});
+    setState(() {
+      
+    });
   }
 
   onClickListItem(LastestListItem item) {
